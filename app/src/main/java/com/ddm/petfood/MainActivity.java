@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.ddm.petfood.databinding.ActivityMainBinding;
 import com.ddm.petfood.ui.CalendarFragment;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+        binding.bottomNavigationView.getMenu().getItem(2).setChecked(true);
+
         // setContentView(R.layout.activity_main);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
