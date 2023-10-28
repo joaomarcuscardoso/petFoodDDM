@@ -31,8 +31,12 @@ public class LoginActivity extends AppCompatActivity {
                 String login = edLogin.getText().toString();
                 String senha = edSenha.getText().toString();
 
+                // linha temporaria para navegar entre as telas
+                login = "usuario";
+                senha = "suasenha";
+
                 if (login.equals("usuario") && senha.equals("suasenha")){
-                    Intent intent = new Intent(v.getContext(), HomeFragment.class);
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
                     intent.putExtra("usuario", "nomeUsuario");
                     startActivity(intent);
                 }else{
