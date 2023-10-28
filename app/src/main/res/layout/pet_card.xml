@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
+    android:padding="10dp"
+    android:outlineProvider="paddedBounds"
+    android:outlineSpotShadowColor="@color/black"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#DAD8D8"
+        />
+
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="60dp"
+        android:background="#DAD8D8"
+        />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/image"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:layout_toEndOf="@id/image"
+        android:textColor="@color/black"
+        tools:text="Nome do Pet"
+        android:textSize="16dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:layout_toEndOf="@id/image"
+        android:layout_below="@id/name"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/black"
+        tools:text="Descrição do Pet"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#DAD8D8"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/image"
+        />
+</RelativeLayout>
