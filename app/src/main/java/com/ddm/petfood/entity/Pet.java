@@ -14,18 +14,19 @@ public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    private int image;
+
     private String nome;
     private String raca;
     @TypeConverters(DateConverter.class)
     private Date dataAniversario;
     private String info;
 
-    public Pet(int id, String nome, String raca, Date dataAniversario, String info) {
-        this.id = id;
+    public Pet(String nome, String raca, Date dataAniversario, int image) {
         this.nome = nome;
         this.raca = raca;
         this.dataAniversario = dataAniversario;
-        this.info = info;
+        this.image = image;
     }
 
     public int getId() {
@@ -76,5 +77,13 @@ public class Pet {
                 ", dataAniversario=" + dataAniversario +
                 ", info='" + info + '\'' +
                 '}';
+    }
+
+    public int getImage() {
+    return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }
