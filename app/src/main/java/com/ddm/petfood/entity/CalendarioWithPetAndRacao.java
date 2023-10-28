@@ -3,17 +3,24 @@ package com.ddm.petfood.entity;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Relation;
+import androidx.room.TypeConverters;
 
+import com.ddm.petfood.entity.Calendario;
+import com.ddm.petfood.entity.Racao;
+import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.helper.DateConverter;
+
+@TypeConverters(DateConverter.class)
 public class CalendarioWithPetAndRacao {
 
     @Embedded
-    private Calendario calendario;
+    public Calendario calendario;
 
     @Relation(parentColumn = "pet_id", entityColumn = "id")
-    private Pet pet;
+    public Pet pet;
 
     @Relation(parentColumn = "racao_id", entityColumn = "id")
-    private Racao racao;
+    public Racao racao;
 
     public CalendarioWithPetAndRacao(){
 

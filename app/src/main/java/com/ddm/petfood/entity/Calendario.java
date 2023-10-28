@@ -4,10 +4,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
-import java.sql.Date;
+import com.ddm.petfood.helper.DateConverter;
 
-@Entity(foreignKeys = {@ForeignKey(entity = Pet.class, parentColumns = "id", childColumns = "pet_id"), @ForeignKey(entity = Racao.class, parentColumns = "id", childColumns = "racao_id")})
+import java.util.Date;
+
+@Entity(foreignKeys = {
+        @ForeignKey(entity = Pet.class, parentColumns = "id", childColumns = "pet_id"),
+        @ForeignKey(entity = Racao.class, parentColumns = "id", childColumns = "racao_id")})
 public class Calendario {
 
     @PrimaryKey(autoGenerate = true)
@@ -15,15 +20,16 @@ public class Calendario {
 
     private String titulo;
 
+    @TypeConverters(DateConverter.class)
     private Date time;
 
     @ColumnInfo(name = "pet_id")
-    private Pet petId;
+    private long petId;
 
     @ColumnInfo(name = "racao_id")
-    private Racao racaoId;
+    private long racaoId;
 
-    public Calendario(String titulo, Date time, Pet petId, Racao racaoId) {
+    public Calendario(String titulo, Date time, long petId, long racaoId) {
         this.titulo = titulo;
         this.time = time;
         this.petId = petId;
@@ -54,19 +60,19 @@ public class Calendario {
         this.time = time;
     }
 
-    public Pet getPetId() {
+    public long getPetId() {
         return petId;
     }
 
-    public void setPetId(Pet petId) {
+    public void setPetId(long petId) {
         this.petId = petId;
     }
 
-    public Racao getRacaoId() {
+    public long getRacaoId() {
         return racaoId;
     }
 
-    public void setRacaoId(Racao racaoId) {
+    public void setRacaoId(long racaoId) {
         this.racaoId = racaoId;
     }
 
