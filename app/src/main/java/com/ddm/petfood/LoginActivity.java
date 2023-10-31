@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ddm.petfood.ui.HomeFragment;
-
 public class LoginActivity extends AppCompatActivity {
 
     private Context context;

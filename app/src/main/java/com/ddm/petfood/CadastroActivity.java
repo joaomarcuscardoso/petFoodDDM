@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.ddm.petfood.databinding.ActivityMainBinding;
-import com.ddm.petfood.ui.CalendarFragment;
-import com.ddm.petfood.ui.HomeFragment;
-import com.ddm.petfood.ui.PetFragment;
-import com.ddm.petfood.ui.UserFragment;
+import com.ddm.petfood.ui.calendar.CalendarFragment;
+import com.ddm.petfood.ui.home.HomeFragment;
+import com.ddm.petfood.ui.pet.PetFragment;
+import com.ddm.petfood.ui.user.UserFragment;
 
 public class CadastroActivity extends AppCompatActivity {
     ActivityMainBinding binding;

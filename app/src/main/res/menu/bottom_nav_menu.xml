@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/user"
-        android:title="User"
+        android:title="Usuário"
         android:icon="@drawable/baseline_person_outline_24" />
     <item
         android:id="@+id/pet"
@@ -15,6 +15,10 @@
         android:enabled="true" />
     <item
         android:id="@+id/calendar"
-        android:title="Calendar"
+        android:title="Calendario"
         android:icon="@drawable/outline_calendar_month_24" />
+    <item
+        android:id="@+id/meal"
+        android:title="Comida"
+        android:icon="@drawable/baseline_cookie_24" />
 </menu>
