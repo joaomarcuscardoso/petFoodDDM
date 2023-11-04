@@ -7,16 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.meal.meal">
 
-    <TextView
-        android:id="@+id/textMeal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="COMIDA"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_meal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/meal_card"/>
 
     <Button
         android:id="@+id/btnAdd"
