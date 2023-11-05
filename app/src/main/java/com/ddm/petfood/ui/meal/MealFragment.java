@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,12 +41,10 @@ public class MealFragment extends Fragment {
 
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        context = getContext();
-        MealViewModel mealViewModel =
-                new ViewModelProvider(this, (ViewModelProvider.Factory) context).get(MealViewModel.class);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        this.context = getContext();
+        MealViewModel mealViewModel = new ViewModelProvider(this).get(MealViewModel.class);
+        mealViewModel.setContext(context);
         binding = FragmentMealBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

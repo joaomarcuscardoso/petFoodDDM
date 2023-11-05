@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.entity.Racao;
 import com.ddm.petfood.repository.RacaoRepository;
 
@@ -14,13 +15,18 @@ import java.util.List;
 
 public class MealViewModel extends ViewModel {
 
-    private final MutableLiveData<List<Racao>> meals;
+    private MutableLiveData<List<Racao>> meals;
     private RacaoRepository racaoRepository;
 
-    public MealViewModel(Context context) {
-        this.racaoRepository =new RacaoRepository(context);
-        this.meals = new MutableLiveData<>();
-        this.meals.setValue(new ArrayList<>());
+    private Context context;
+
+    public MealViewModel() {
+        this.meals = new MutableLiveData<List<Racao>>();
+    }
+
+    public void setContext(Context context){
+        this.context = context;
+        this.racaoRepository = new RacaoRepository(context);
     }
 
     public LiveData<List<Racao>> getMeals() {
@@ -32,6 +38,5 @@ public class MealViewModel extends ViewModel {
 
         List<Racao> mealList = this.meals.getValue();
         mealList.add(meal);
-        this.meals.setValue(mealList);
     }
 }
