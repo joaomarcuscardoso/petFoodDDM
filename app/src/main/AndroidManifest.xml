@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PetFood"
         tools:targetApi="31">
         <activity
+            android:name=".ui.AddPetActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.meal.MealCadastro"
             android:exported="false" />
         <activity
@@ -26,10 +29,10 @@
         </activity>
         <activity
             android:name=".CadastroActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
