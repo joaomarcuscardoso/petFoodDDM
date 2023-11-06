@@ -5,13 +5,18 @@
     android:id="@+id/viewMeal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.meal.meal">
+    tools:context=".ui.meal.MealFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_meal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/meal_card"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <Button
         android:id="@+id/btnAdd"

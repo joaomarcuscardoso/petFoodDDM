@@ -46,11 +46,11 @@ public class RacaoRepository {
         }
     }
 
-    public LiveData<Racao> getRacao(int id){
-        return db.racaoDao().getRacaoLiveData(id);
+    public Racao getRacao(int id){
+        return db.racaoDao().getRacao(id);
     }
 
-    public LiveData<List<Racao>> listarRacao(){
-        return db.racaoDao().getAllLiveData();
+    public List<Racao> listarRacao(){
+        return db.racaoDao().getAllRacao();
     }
 }

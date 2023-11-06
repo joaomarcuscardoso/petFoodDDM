@@ -17,10 +17,10 @@ public interface CalendarioWithPetAndRacaoDao {
 
     @Transaction
     @Query("SELECT * FROM Calendario")
-    LiveData<List<CalendarioWithPetAndRacao>> getCalendariosWithPetAndRacao();
+    List<CalendarioWithPetAndRacao> getCalendariosWithPetAndRacao();
 
     @Transaction
     @Query("SELECT * FROM Calendario WHERE id = :id")
-    LiveData<CalendarioWithPetAndRacao> getCalendarioWithPetAndRacaoById(int id);
+    CalendarioWithPetAndRacao getCalendarioWithPetAndRacaoById(int id);
 
 }

@@ -15,13 +15,7 @@ import java.util.List;
 public interface RacaoDao {
 
     @Query("SELECT * FROM racao")
-    LiveData<List<Racao>> getAllLiveData();
-
-    @Query("SELECT * FROM racao WHERE id = :id")
-    LiveData<Racao> getRacaoLiveData(int id);
-
-    @Query("SELECT * FROM racao")
-    List<Racao> getAll();
+    List<Racao> getAllRacao();
 
     @Query("SELECT * FROM racao WHERE id = :id")
     Racao getRacao(int id);
