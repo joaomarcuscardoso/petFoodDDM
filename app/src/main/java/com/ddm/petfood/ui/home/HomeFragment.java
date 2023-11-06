@@ -49,11 +49,25 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Set a LinearLayoutManager
 
         homeViewModel.getPets().observe(getViewLifecycleOwner(), pets -> {
+            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
+            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
             adapter = new PetAdapter(getContext(), pets);
             recyclerView.setAdapter(adapter);
         });
 
         Button btnAdd = root.findViewById(R.id.btnAdd);
+
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
