@@ -46,11 +46,11 @@ public class CalendarioRepository {
         }
     }
 
-    public LiveData<List<CalendarioWithPetAndRacao>> ListarCalendarioWithPetAndRacao(){
+    public List<CalendarioWithPetAndRacao> ListarCalendarioWithPetAndRacao(){
         return db.calendarioWithPetAndRacaoDao().getCalendariosWithPetAndRacao();
     }
 
-    public LiveData<CalendarioWithPetAndRacao> getCalendarioWithPetAndRacao(int id){
+    public CalendarioWithPetAndRacao getCalendarioWithPetAndRacao(int id){
         return db.calendarioWithPetAndRacaoDao().getCalendarioWithPetAndRacaoById(id);
     }
 

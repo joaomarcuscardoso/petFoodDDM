@@ -22,6 +22,7 @@ public class MealViewModel extends ViewModel {
 
     public MealViewModel() {
         this.meals = new MutableLiveData<List<Racao>>();
+        this.meals.setValue(new ArrayList<>());
     }
 
     public void setContext(Context context){
@@ -38,5 +39,6 @@ public class MealViewModel extends ViewModel {
 
         List<Racao> mealList = this.meals.getValue();
         mealList.add(meal);
+        this.meals.setValue(mealList);
     }
 }
