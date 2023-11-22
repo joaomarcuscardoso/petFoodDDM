@@ -6,11 +6,12 @@ import android.database.sqlite.SQLiteConstraintException;
 import androidx.room.Room;
 
 import com.ddm.petfood.AppDataBase;
+import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.entity.Pet;
 
 import java.util.List;
 
-public class PetRepository {
+public class PetRepository implements PetDao {
     private Context context;
     private AppDataBase db;
 
@@ -47,6 +48,16 @@ public class PetRepository {
         }
     }
 
+    public List<Pet> getAll(){
+        try {
+            List<Pet> Pets = db.petDao().getAll();
+            return Pets;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     public Pet getPet(int id){
         try {
             Pet Pet = db.petDao().getPet(id);
@@ -55,6 +66,21 @@ public class PetRepository {
         catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public void insertAll(Pet... Pets) {
+
+    }
+
+    @Override
+    public void updatePet(Pet Pet) {
+
+    }
+
+    @Override
+    public void deletePet(Pet Pet) {
+
     }
 
     public List<Pet> listarPets(){

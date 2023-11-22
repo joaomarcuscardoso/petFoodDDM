@@ -10,17 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ddm.petfood.R;
+import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.databinding.FragmentPetBinding;
+import com.ddm.petfood.factory.PetViewModelFactory;
+import com.ddm.petfood.repository.PetRepository;
 
 public class PetFragment extends Fragment {
 
     private FragmentPetBinding binding;
+    private PetViewModel petViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        PetViewModel petViewModel =
-                new ViewModelProvider(this).get(PetViewModel.class);
+        PetDao petDao = new PetRepository(getContext());
+
+        petViewModel = new ViewModelProvider(this, new PetViewModelFactory(petDao)).get(PetViewModel.class);
 
         binding = FragmentPetBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

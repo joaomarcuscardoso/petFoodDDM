@@ -18,7 +18,7 @@
         android:title="Calendario"
         android:icon="@drawable/outline_calendar_month_24" />
     <item
-        android:id="@+id/meal"
+        android:id="@+id/race"
         android:title="Comida"
         android:icon="@drawable/baseline_cookie_24" />
 </menu>
