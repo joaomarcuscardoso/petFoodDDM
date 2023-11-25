@@ -28,7 +28,7 @@ public class MealCadastro extends AppCompatActivity {
         mealViewModel = new ViewModelProvider(this, new MealViewModelFactory(racaoRepository)).get(MealViewModel.class);
 
         editTextNome = findViewById(R.id.edtNome);
-        editTextNome = findViewById(R.id.edtInfo);
+        editTextInfo = findViewById(R.id.edtInfo);
         Button btnSalvar = findViewById(R.id.btnSalvar);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
