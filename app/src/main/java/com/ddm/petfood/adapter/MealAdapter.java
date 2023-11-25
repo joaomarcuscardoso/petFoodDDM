@@ -19,8 +19,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder>{
     private List<Racao> meals;
     private Context context;
 
-    public MealAdapter(Context context, List<Racao> meals){
+    public MealAdapter(Context context){
         this.context = context;
+    }
+
+    public void setMeals(List<Racao> meals){
         this.meals = meals;
     }
 

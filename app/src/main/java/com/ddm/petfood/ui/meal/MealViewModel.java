@@ -1,44 +1,38 @@
 package com.ddm.petfood.ui.meal;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.entity.Racao;
 import com.ddm.petfood.repository.RacaoRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MealViewModel extends ViewModel {
-
-    private MutableLiveData<List<Racao>> meals;
+public class MealViewModel extends ViewModel
+{
+    private MutableLiveData<List<Racao>> racaoLiveData;
     private RacaoRepository racaoRepository;
 
-    private Context context;
-
-    public MealViewModel() {
-        this.meals = new MutableLiveData<List<Racao>>();
-        this.meals.setValue(new ArrayList<>());
+    public MealViewModel(RacaoRepository racaoRepository){
+        this.racaoRepository = racaoRepository;
     }
 
-    public void setContext(Context context){
-        this.context = context;
-        this.racaoRepository = new RacaoRepository(context);
+    public void addNewRacao(String nome, String info){
+        Racao newRacao = new Racao(nome, info);
+        racaoRepository.salvarRacao(newRacao);
     }
 
-    public LiveData<List<Racao>> getMeals() {
-        return meals;
+    public LiveData<List<Racao>> getAllRacoes(){
+        if(racaoLiveData == null)
+            racaoLiveData = new MutableLiveData<>();
+        loadAllRacoes();
+        return racaoLiveData;
     }
 
-    public void addMeal(){
-        Racao meal = new Racao("Meal massa ai", "Tem uns kg ai");
-
-        List<Racao> mealList = this.meals.getValue();
-        mealList.add(meal);
-        this.meals.setValue(mealList);
+    private void loadAllRacoes(){
+        List<Racao> racoes = racaoRepository.getAllRacao();
+        racaoLiveData.setValue(racoes);
     }
+
 }

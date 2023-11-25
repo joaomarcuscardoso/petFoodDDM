@@ -50,7 +50,7 @@ public class RacaoRepository {
         return db.racaoDao().getRacao(id);
     }
 
-    public List<Racao> listarRacao(){
+    public List<Racao> getAllRacao(){
         return db.racaoDao().getAllRacao();
     }
 }
