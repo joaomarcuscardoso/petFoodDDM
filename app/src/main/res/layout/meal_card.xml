@@ -19,11 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/image_meal"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/baseline_cookie_24" />
         <TextView
             android:id="@+id/nome_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@+id/image_meal"
+            android:layout_marginStart="10dp"
             android:text="Nome"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -32,7 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nome_meal"
+            android:layout_toEndOf="@+id/image_meal"
             android:layout_marginTop="0dp"
+            android:layout_marginStart="10dp"
             android:text="Info"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

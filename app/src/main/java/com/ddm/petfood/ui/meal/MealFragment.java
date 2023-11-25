@@ -1,5 +1,6 @@
 package com.ddm.petfood.ui.meal;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -20,6 +21,7 @@ import com.ddm.petfood.R;
 import com.ddm.petfood.adapter.MealAdapter;
 import com.ddm.petfood.databinding.FragmentMealBinding;
 import com.ddm.petfood.entity.Racao;
+import com.ddm.petfood.repository.RacaoRepository;
 
 import java.util.List;
 
@@ -29,13 +31,13 @@ public class MealFragment extends Fragment {
 
     private MealAdapter mealAdapter;
 
-    private List<Racao> meals;
-
     private Handler handler = new Handler();
 
     private RecyclerView recyclerView;
 
     private FragmentMealBinding binding;
+
+    private MealViewModel mealViewModel;
 
     public MealFragment(){
 
@@ -43,20 +45,29 @@ public class MealFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.context = getContext();
-        MealViewModel mealViewModel = new ViewModelProvider(this).get(MealViewModel.class);
-        mealViewModel.setContext(context);
+
+        RacaoRepository racaoRepository = new RacaoRepository(context);
+
+        mealViewModel = new ViewModelProvider(this, new MealViewModelFactory(racaoRepository)).get(MealViewModel.class);
+
         binding = FragmentMealBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         recyclerView = root.findViewById(R.id.recycler_meal);
+        mealAdapter = new MealAdapter(context);
+        recyclerView.setAdapter(mealAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        mealViewModel.getMeals().observe(getViewLifecycleOwner(), meals ->{
-            meals.add(new Racao("PedeAGripe", "Comida de cachorro rico"));
-            mealAdapter = new MealAdapter(context, meals);
-            recyclerView.setAdapter(mealAdapter);
+        mealViewModel.getAllRacoes().observe(getViewLifecycleOwner(), new Observer<List<Racao>>() {
+            @Override
+            public void onChanged(List<Racao> racaos) {
+
+                mealAdapter.setMeals(racaos);
+
+            }
         });
+
 
         Button btnAdd = root.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
