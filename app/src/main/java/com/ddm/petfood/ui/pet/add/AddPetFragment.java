@@ -2,21 +2,46 @@ package com.ddm.petfood.ui.pet.add;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.R;
+import com.ddm.petfood.databinding.FragmentAddPetBinding;
+import com.ddm.petfood.databinding.FragmentHomeBinding;
+import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.factory.AddPetViewModelFactory;
+import com.ddm.petfood.repository.PetRepository;
+import com.ddm.petfood.ui.home.HomeFragment;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Date;
 
 public class AddPetFragment extends Fragment {
 
-    private AddPetViewModel mViewModel;
+    private AddPetViewModel petViewModel;
+
+
+    private Context context;
+    private FragmentAddPetBinding binding;
+
+    private View addPetView;
+
 
     public static AddPetFragment newInstance() {
         return new AddPetFragment();
@@ -25,14 +50,60 @@ public class AddPetFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AddPetViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        PetDao petDao = new PetRepository(getContext());
+        petViewModel = new ViewModelProvider(this, new AddPetViewModelFactory(petDao)).get(AddPetViewModel.class);
+
+        this.binding = FragmentAddPetBinding.inflate(inflater, container, false);
+        this.context = container.getContext();
+
+        addPetView = binding.getRoot();
+        Button btnSave = addPetView.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get all fields from fragment
+                TextInputEditText name = v.findViewById(R.id.name);
+                TextInputEditText dateBirth = v.findViewById(R.id.dateBirth);
+                TextInputEditText race = v.findViewById(R.id.race);
+                String nameInput = name.getText().toString();
+                String dateBirthInput = name.getText().toString();
+                String raceInput = name.getText().toString();
+
+                if (nameInput.isEmpty()) {
+                    TextInputLayout nameLayout = v.findViewById(R.id.name);
+                    nameLayout.setError("Campo obrigatório");
+                    return;
+                }
+
+                if (dateBirthInput.isEmpty()) {
+                    TextInputLayout dateBirthLayout = v.findViewById(R.id.dateBirth);
+                    dateBirthLayout.setError("Campo obrigatório");
+                    return;
+                }
+
+                if (raceInput.isEmpty()) {
+                    TextInputLayout raceLayout = v.findViewById(R.id.dateBirth);
+                    raceLayout.setError("Campo obrigatório");
+                    return;
+
+                }
+
+                // dateBirth must be type date
+                Pet pet = new Pet(nameInput, raceInput, new Date(), 0);
+                petViewModel.insertPet(pet);
+
+                // call Toast to show message and redirect home page
+                Toast.makeText(getContext(), "Pet cadastrado com sucesso", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), HomeFragment.class);
+                startActivity(intent);
+            }
+        });
         return inflater.inflate(R.layout.fragment_add_pet, container, false);
     }
 

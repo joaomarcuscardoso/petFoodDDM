@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.pet) {
                 replaceFragment(new PetFragment());
 
-            } else if (itemId == R.id.meal) {
+            } else if (itemId == R.id.race) {
                 replaceFragment(new MealFragment());
             } else if (itemId == R.id.calendar) {
                 replaceFragment(new CalendarFragment());

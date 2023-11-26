@@ -28,8 +28,6 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private Context context;
-
-    private PetAdapter petAdapter;
     private List<Pet> pets;
     private Handler handler = new Handler();
     private PetAdapter adapter;
@@ -49,18 +47,6 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Set a LinearLayoutManager
 
         homeViewModel.getPets().observe(getViewLifecycleOwner(), pets -> {
-            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Ted", "Ted", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Tob", "Cachorro", new Date(), R.drawable.outline_pets_24));
-            pets.add(new Pet("Mi", "Gato", new Date(), R.drawable.outline_pets_24));
             adapter = new PetAdapter(getContext(), pets);
             recyclerView.setAdapter(adapter);
         });
