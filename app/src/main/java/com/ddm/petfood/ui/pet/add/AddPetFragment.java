@@ -4,27 +4,21 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.R;
 import com.ddm.petfood.databinding.FragmentAddPetBinding;
-import com.ddm.petfood.databinding.FragmentHomeBinding;
 import com.ddm.petfood.entity.Pet;
-import com.ddm.petfood.factory.AddPetViewModelFactory;
 import com.ddm.petfood.repository.PetRepository;
 import com.ddm.petfood.ui.home.HomeFragment;
 import com.google.android.material.textfield.TextInputEditText;
@@ -56,24 +50,24 @@ public class AddPetFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        PetDao petDao = new PetRepository(getContext());
-        petViewModel = new ViewModelProvider(this, new AddPetViewModelFactory(petDao)).get(AddPetViewModel.class);
+        PetRepository petRepository= new PetRepository(getContext());
+        petViewModel = new ViewModelProvider(this, new AddPetViewModelFactory(petRepository)).get(AddPetViewModel.class);
 
         this.binding = FragmentAddPetBinding.inflate(inflater, container, false);
         this.context = container.getContext();
 
         addPetView = binding.getRoot();
         Button btnSave = addPetView.findViewById(R.id.btnSave);
+        TextInputEditText name = addPetView.findViewById(R.id.name);
+        TextInputEditText dateBirth = addPetView.findViewById(R.id.dateBirth);
+        TextInputEditText race = addPetView.findViewById(R.id.race);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get all fields from fragment
-                TextInputEditText name = v.findViewById(R.id.name);
-                TextInputEditText dateBirth = v.findViewById(R.id.dateBirth);
-                TextInputEditText race = v.findViewById(R.id.race);
                 String nameInput = name.getText().toString();
-                String dateBirthInput = name.getText().toString();
-                String raceInput = name.getText().toString();
+                String dateBirthInput = dateBirth.getText().toString();
+                String raceInput = race.getText().toString();
 
                 if (nameInput.isEmpty()) {
                     TextInputLayout nameLayout = v.findViewById(R.id.name);

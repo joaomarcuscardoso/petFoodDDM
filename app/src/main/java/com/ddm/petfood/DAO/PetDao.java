@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.entity.Racao;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface PetDao {
     @Query("SELECT * FROM pet")
     List<Pet> getAll();
 
-    @Query("SELECT * FROM Pet WHERE ID = :id")
+    @Query("SELECT * FROM pet WHERE ID = :id")
     Pet getPet(int id);
 
     @Insert

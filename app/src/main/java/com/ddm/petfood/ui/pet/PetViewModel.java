@@ -30,10 +30,6 @@ public class PetViewModel extends ViewModel {
         mText.setValue("This is pet fragment");
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
-
     public LiveData<List<Pet>> listAllPets(){
         if (petsLiveData == null)
             petsLiveData = new MutableLiveData<>();

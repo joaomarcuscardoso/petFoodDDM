@@ -3,11 +3,13 @@ package com.ddm.petfood.repository;
 import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 
+import androidx.room.Query;
 import androidx.room.Room;
 
 import com.ddm.petfood.AppDataBase;
 import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.entity.Racao;
 
 import java.util.List;
 
@@ -48,14 +50,11 @@ public class PetRepository implements PetDao {
         }
     }
 
-    public List<Pet> getAll(){
-        try {
-            List<Pet> Pets = db.petDao().getAll();
-            return Pets;
-        }
-        catch (Exception e){
-            return null;
-        }
+    @Query("SELECT * FROM pet")
+    public List<Pet> getAll() {
+        List<Pet> pet = db.petDao().getAll();
+        System.out.println("PET: " + pet);
+        return pet;
     }
 
     public Pet getPet(int id){

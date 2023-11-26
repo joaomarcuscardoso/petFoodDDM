@@ -1,4 +1,4 @@
-package com.ddm.petfood.ui.pet;
+package com.ddm.petfood.ui.pet.edit;
 
 import androidx.appcompat.app.AppCompatActivity;
 

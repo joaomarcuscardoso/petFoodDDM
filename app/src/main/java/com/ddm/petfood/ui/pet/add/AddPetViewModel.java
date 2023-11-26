@@ -8,19 +8,20 @@ import androidx.lifecycle.ViewModel;
 
 import com.ddm.petfood.DAO.PetDao;
 import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.repository.PetRepository;
 
 import java.util.List;
 
 public class AddPetViewModel extends ViewModel {
 
-    private PetDao petDao;
+    private PetRepository petRepository;
     private MutableLiveData<List<Pet>> petsLiveData;
 
-    public AddPetViewModel(PetDao petDao) {
-        this.petDao = petDao;
+    public AddPetViewModel(PetRepository petRepo) {
+        this.petRepository = petRepo;
     }
 
     public void insertPet(Pet pet){
-        petDao.insertAll(pet);
+        petRepository.insertAll(pet);
     }
 }

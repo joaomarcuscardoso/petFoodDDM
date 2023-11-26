@@ -8,28 +8,37 @@ import androidx.lifecycle.ViewModel;
 
 import com.ddm.petfood.R;
 import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.entity.Racao;
+import com.ddm.petfood.repository.PetRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-    private final MutableLiveData<List<Pet>> pets;
+    private MutableLiveData<List<Pet>> pets;
 
-    public HomeViewModel() {
-        this.pets = new MutableLiveData<List<Pet>>();
-        this.pets.setValue(new ArrayList<>()); // Initialize the LiveData with an empty ArrayList
+    private PetRepository petRepository;
+
+    public HomeViewModel(PetRepository petRepository) {
+        this.petRepository = petRepository;
     }
 
-    public LiveData<List<Pet>> getPets() {
+
+    public LiveData<List<Pet>> getAllPets(){
+        if(pets == null)
+            pets = new MutableLiveData<>();
+        loadAllPets();
         return pets;
     }
 
-    public void addPet() {
-        Pet pet = new Pet("Ted", "Ted é um cachorro muito legal", new Date(), R.drawable.outline_pets_24);
+    private void loadAllPets(){
+        List<Pet> petsDB = petRepository.getAll();
+        pets.setValue(petsDB);
+    }
 
-        List<Pet> petList = this.pets.getValue();
-        petList.add(pet);
-        this.pets.setValue(petList);
+    public void addPet(String name, String info, Date dateBirth) {
+        Pet pet = new Pet(name, info, dateBirth, R.drawable.outline_pets_24);
+        petRepository.salvarPet(pet);
     }
 }

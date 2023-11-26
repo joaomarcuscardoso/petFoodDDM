@@ -20,8 +20,15 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
     private Context context;
     private List<Pet> pets;
 
-    public PetAdapter(Context context, List<Pet> pets) {
+    public PetAdapter(Context context) {
         this.context = context;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
 
