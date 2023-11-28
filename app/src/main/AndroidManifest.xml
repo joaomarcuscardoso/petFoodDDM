@@ -16,7 +16,7 @@
             android:name=".ui.pet.edit.EditPetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddPetActivity"
+            android:name=".ui.pet.AddPetActivity"
             android:exported="false" />
         <activity
             android:name=".ui.meal.MealCadastro"

@@ -3,38 +3,21 @@ package com.ddm.petfood.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ddm.petfood.MainActivity;
 import com.ddm.petfood.R;
-import com.ddm.petfood.adapter.MealAdapter;
 import com.ddm.petfood.adapter.PetAdapter;
 import com.ddm.petfood.databinding.FragmentHomeBinding;
-import com.ddm.petfood.entity.Pet;
-import com.ddm.petfood.entity.Racao;
 import com.ddm.petfood.repository.PetRepository;
-import com.ddm.petfood.repository.RacaoRepository;
-import com.ddm.petfood.ui.AddPetActivity;
-import com.ddm.petfood.ui.meal.MealCadastro;
-import com.ddm.petfood.ui.meal.MealViewModel;
-import com.ddm.petfood.ui.meal.MealViewModelFactory;
-import com.ddm.petfood.ui.pet.PetViewModel;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.ddm.petfood.ui.pet.AddPetActivity;
 
 public class HomeFragment extends Fragment {
     private Context context;
@@ -72,7 +55,6 @@ public class HomeFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // call AddPetFragment
                 Intent intent = new Intent(v.getContext(), AddPetActivity.class);
                 startActivity(intent);
             }

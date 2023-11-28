@@ -37,8 +37,10 @@ public class HomeViewModel extends ViewModel {
         pets.setValue(petsDB);
     }
 
-    public void addPet(String name, String info, Date dateBirth) {
-        Pet pet = new Pet(name, info, dateBirth, R.drawable.outline_pets_24);
+    public void addPet(String name, String race, Date date, String info) {
+        Pet pet = new Pet(name, race, date, R.drawable.outline_pets_24);
+        if (!info.isEmpty())
+            pet.setInfo(info);
         petRepository.salvarPet(pet);
     }
 }

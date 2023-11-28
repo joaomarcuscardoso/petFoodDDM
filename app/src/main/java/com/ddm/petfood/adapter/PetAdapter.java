@@ -57,7 +57,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
         // logica para mudar estado de elemento
         Pet pet = pets.get(position);
         holder.name.setText(pet.getNome());
-        holder.description.setText(pet.getInfo());
+        holder.description.setText("Raça: " + pet.getRaca());
         holder.image.setImageResource(pet.getImage());
     }
 
