@@ -59,4 +59,32 @@
         android:layout_below="@id/image"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="4dp"
+        android:clickable="true"
+        android:maxHeight="20dp"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:backgroundTint="#CDCFCF"
+        app:borderWidth="2dp"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/btnRemove"
+        android:clickable="true"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:backgroundTint="#CDCFCF"
+        app:backgroundTintMode="src_in"
+        app:maxImageSize="28dp"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.ddm.petfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ddm.petfood.R;
 import com.ddm.petfood.entity.Pet;
+import com.ddm.petfood.ui.home.HomeFragment;
+import com.ddm.petfood.ui.pet.EditPetActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -20,8 +25,15 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
     private Context context;
     private List<Pet> pets;
 
-    public PetAdapter(Context context, List<Pet> pets) {
+    public PetAdapter(Context context) {
         this.context = context;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
 
@@ -29,12 +41,16 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
         public TextView name;
         public TextView description;
         public ImageView image;
+        public FloatingActionButton btnRemove;
+        public FloatingActionButton btnEdit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             description = itemView.findViewById(R.id.description);
             image = itemView.findViewById(R.id.image);
+            btnRemove = itemView.findViewById(R.id.btnRemove);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
         }
     }
 
@@ -46,12 +62,31 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PetAdapter.ViewHolder holder, int position) {
-        // logica para mudar estado de elemento
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pet pet = pets.get(position);
         holder.name.setText(pet.getNome());
-        holder.description.setText(pet.getInfo());
+        holder.description.setText("Raça: " + pet.getRaca());
         holder.image.setImageResource(pet.getImage());
+
+        holder.btnRemove.setOnClickListener(v -> {
+            if (pet != null) {
+                pets.remove(pet);
+                HomeFragment.homeViewModel.removePet(pet);
+            }
+            notifyDataSetChanged();
+        });
+
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pet != null) {
+                    Intent intent = new Intent(v.getContext(), EditPetActivity.class);
+                    intent.putExtra("pet", (Parcelable) pet);
+                    v.getContext().startActivity(intent);
+                }
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

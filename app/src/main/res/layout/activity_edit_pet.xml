@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EditPetActivity" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/container"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+android:gravity="center"
+tools:context=".ui.pet.EditPetActivity">
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtRace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Raça"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/edtInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Info"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/edtDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nascimento"
+        android:inputType="date" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+</LinearLayout>

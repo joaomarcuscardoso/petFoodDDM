@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ddm.petfood.R;
-import com.ddm.petfood.entity.Racao;
 import com.ddm.petfood.repository.RacaoRepository;
 
 public class MealCadastro extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class MealCadastro extends AppCompatActivity {
         mealViewModel = new ViewModelProvider(this, new MealViewModelFactory(racaoRepository)).get(MealViewModel.class);
 
         editTextNome = findViewById(R.id.edtNome);
-        editTextInfo = findViewById(R.id.edtInfo);
+        editTextInfo = findViewById(R.id.edtRace);
         Button btnSalvar = findViewById(R.id.btnSalvar);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
