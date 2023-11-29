@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ddm.petfood.R;
 import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.ui.home.HomeFragment;
-import com.ddm.petfood.ui.home.HomeViewModel;
-import com.ddm.petfood.ui.pet.edit.EditPetActivity;
+import com.ddm.petfood.ui.pet.EditPetActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

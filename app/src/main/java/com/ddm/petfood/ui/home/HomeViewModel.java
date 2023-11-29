@@ -47,4 +47,8 @@ public class HomeViewModel extends ViewModel {
     public void removePet(Pet pet) {
         petRepository.excluirPet(pet);
     }
+
+    public void atualiarPet(Pet pet) {
+        petRepository.atualizarPet(pet);
+    }
 }

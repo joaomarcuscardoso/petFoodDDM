@@ -1,15 +1,21 @@
 package com.ddm.petfood.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.ddm.petfood.helper.DateConverter;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class Pet {
+public class Pet implements Serializable, Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -28,6 +34,32 @@ public class Pet {
         this.dataAniversario = dataAniversario;
         this.image = image;
     }
+
+    protected Pet(Parcel in) {
+        id = in.readInt();
+        image = in.readInt();
+        nome = in.readString();
+        raca = in.readString();
+        info = in.readString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            dataAniversario = formatter.parse(in.readString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final Creator<Pet> CREATOR = new Creator<Pet>() {
+        @Override
+        public Pet createFromParcel(Parcel in) {
+            return new Pet(in);
+        }
+
+        @Override
+        public Pet[] newArray(int size) {
+            return new Pet[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -85,5 +117,21 @@ public class Pet {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(nome);
+        parcel.writeString(raca);
+        parcel.writeString(info);
+        parcel.writeInt(image);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        parcel.writeString(formatter.format(dataAniversario));
     }
 }
