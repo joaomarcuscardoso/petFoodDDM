@@ -9,15 +9,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ddm.petfood.R;
 import com.ddm.petfood.adapter.PetAdapter;
+import com.ddm.petfood.adapter.RecyclerViewInterface;
 import com.ddm.petfood.databinding.FragmentHomeBinding;
+import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.repository.PetRepository;
 import com.ddm.petfood.ui.pet.AddPetActivity;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private Context context;
@@ -26,7 +32,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
-    private HomeViewModel homeViewModel;
+    public static HomeViewModel homeViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,8 +51,9 @@ public class HomeFragment extends Fragment {
         // Set the layout manager (e.g., LinearLayoutManager)
         recyclerView.setLayoutManager(new LinearLayoutManager(context)); // Set a LinearLayoutManager
 
-        homeViewModel.getAllPets().observe(getViewLifecycleOwner(), pets -> {
-            adapter.setPets(pets);
+        homeViewModel.getAllPets().observe(getViewLifecycleOwner(), petsRepo -> {
+            adapter.setPets(petsRepo);
+            adapter.notifyDataSetChanged();
         });
 
         Button btnAdd = root.findViewById(R.id.btnAdd);
@@ -61,11 +68,5 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
