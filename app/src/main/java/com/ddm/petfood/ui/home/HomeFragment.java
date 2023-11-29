@@ -9,21 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ddm.petfood.R;
 import com.ddm.petfood.adapter.PetAdapter;
-import com.ddm.petfood.adapter.RecyclerViewInterface;
 import com.ddm.petfood.databinding.FragmentHomeBinding;
-import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.repository.PetRepository;
 import com.ddm.petfood.ui.pet.AddPetActivity;
-
-import java.util.List;
 
 public class HomeFragment extends Fragment {
     private Context context;
