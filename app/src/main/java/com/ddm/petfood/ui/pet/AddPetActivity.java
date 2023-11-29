@@ -53,20 +53,32 @@ public class AddPetActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String name = editTextName.getText().toString();
-                    String race = editTextRace.getText().toString();
-                    String info = editTextInfo.getText().toString();
-                    if (info == null || info.isEmpty())
-                        info = "";
+                String name = editTextName.getText().toString();
+                String race = editTextRace.getText().toString();
+                String info = editTextInfo.getText().toString();
 
+                if (name.isEmpty()) {
+                    Toast.makeText(AddPetActivity.this, "Nome não pode ser vazio!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (race.isEmpty()) {
+                    Toast.makeText(AddPetActivity.this, "Raça não pode ser vazio!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (info == null || info.isEmpty())
+                    info = "";
+
+                try {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = formatter.parse(editTextDate.getText().toString());
                     homeViewModel.addPet(name, race, date, info);
+                    // Use the 'date' variable as needed
                 } catch (ParseException e) {
-                    throw new RuntimeException(e);
+                    Toast.makeText(AddPetActivity.this, "Data inválida!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-
                 Toast.makeText(AddPetActivity.this, "Pet adicionado com sucesso!", Toast.LENGTH_SHORT).show();
                 // return to home
                 replaceFragment(new HomeFragment());
