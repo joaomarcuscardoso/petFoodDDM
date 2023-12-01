@@ -20,6 +20,9 @@ public interface PetDao {
     @Query("SELECT * FROM pet WHERE ID = :id")
     Pet getPet(int id);
 
+    @Query("SELECT * FROM pet WHERE nome LIKE :nome")
+    List<Pet> searchPets(String nome);
+
     @Insert
     void insertAll(Pet... Pets);
 

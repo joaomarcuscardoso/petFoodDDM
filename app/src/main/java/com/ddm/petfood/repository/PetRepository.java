@@ -84,4 +84,15 @@ public class PetRepository implements PetDao {
             return null;
         }
     }
+
+    @Override
+    public List<Pet> searchPets(String nome) {
+        try {
+            List<Pet> pets = db.petDao().searchPets('%' + nome + '%');
+            return pets;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
 }

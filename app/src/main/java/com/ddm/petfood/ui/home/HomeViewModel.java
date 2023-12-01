@@ -50,4 +50,10 @@ public class HomeViewModel extends ViewModel {
     public void atualiarPet(Pet pet) {
         petRepository.updatePet(pet);
     }
+
+    public List<Pet> searchPets(String name) {
+        List<Pet> petsDB = petRepository.searchPets(name);
+        pets.setValue(petsDB);
+        return petsDB;
+    }
 }

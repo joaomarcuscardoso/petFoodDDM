@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -52,12 +53,45 @@ public class HomeFragment extends Fragment {
 
         Button btnAdd = root.findViewById(R.id.btnAdd);
 
-
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddPetActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        SearchView searchView = root.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // Called when the user submits the query (e.g., by pressing the search button on the keyboard)
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query.isEmpty()) {
+                    homeViewModel.getAllPets().observe(getViewLifecycleOwner(), petsRepo -> {
+                        adapter.setPets(petsRepo);
+                        adapter.notifyDataSetChanged();
+                    });
+                } else {
+                    homeViewModel.searchPets(query);
+                    adapter.notifyDataSetChanged();
+                }
+                return true;
+            }
+
+            // Called when the query text is changed by the user
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (query.isEmpty()) {
+                    homeViewModel.getAllPets().observe(getViewLifecycleOwner(), petsRepo -> {
+                        adapter.setPets(petsRepo);
+                        adapter.notifyDataSetChanged();
+                    });
+                } else {
+                    homeViewModel.searchPets(query);
+                    adapter.notifyDataSetChanged();
+
+                }
+                return true;
             }
         });
 
