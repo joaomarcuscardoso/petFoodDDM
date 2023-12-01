@@ -39,8 +39,7 @@ public class HomeViewModel extends ViewModel {
 
     public void addPet(String name, String race, Date date, String info) {
         Pet pet = new Pet(name, race, date, R.drawable.outline_pets_24);
-        if (!info.isEmpty())
-            pet.setInfo(info);
+        pet.setInfo(info);
         petRepository.salvarPet(pet);
     }
 
@@ -49,6 +48,6 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void atualiarPet(Pet pet) {
-        petRepository.atualizarPet(pet);
+        petRepository.updatePet(pet);
     }
 }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.ddm.petfood.R;
@@ -47,19 +48,14 @@ public class EditPetActivity extends AppCompatActivity {
         editTextRace = findViewById(R.id.edtRace);
         editTextDate = findViewById(R.id.edtDate);
         editTextInfo = findViewById(R.id.edtInfo);
-        Button btnSalvar = findViewById(R.id.btnSalvar);
-
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        String formattedDate = dateFormat.format(pet.getDataAniversario());
-
         editTextName.setText(pet.getNome());
         editTextRace.setText(pet.getRaca());
         editTextInfo.setText(pet.getInfo());
-//        editTextDate.setText(formattedDate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = dateFormat.format(pet.getDataAniversario());
+        editTextDate.setText(formattedDate);
 
-        // Use the 'date' variable as needed
-
-
+        Button btnSalvar = findViewById(R.id.btnSalvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,43 +73,34 @@ public class EditPetActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (info == null || info.isEmpty())
-                    info = "";
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-//                try {
-//                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//                    if (editTextDate.getText().toString().isEmpty()) {
-//                        Toast.makeText(EditPetActivity.this, "Data inválida!", Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-
-//                    Date date = formatter.parse(editTextDate.getText().toString());
+                    String inputDate = editTextDate.getText().toString();
+                    if (inputDate.isEmpty()) {
+                        Toast.makeText(EditPetActivity.this, "Data inválida!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Date date = formatter.parse(inputDate);
 
                     pet.setNome(name);
                     pet.setRaca(race);
                     pet.setInfo(info);
-//                    pet.setDataAniversario(date);
-                    System.out.println("PET: " + pet.toString());
+                    pet.setDataAniversario(date);
                     homeViewModel.atualiarPet(pet);
-                    // Use the 'date' variable as needed
-//                } catch (ParseException e) {
-//                    Toast.makeText(EditPetActivity.this, "Data inválida!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-                Toast.makeText(EditPetActivity.this, "Pet adicionado com sucesso!", Toast.LENGTH_SHORT).show();
-                // return to home
-                replaceFragment(new HomeFragment());
+                } catch (ParseException e) {
+                    Toast.makeText(EditPetActivity.this, "Data inválida!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(EditPetActivity.this, "Pet atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                FrameLayout frameLayout = findViewById(R.id.frame_layout);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(frameLayout.getId(), new HomeFragment())
+                        .commit();
             }
         });
 
-        setTitle("Add Meal");
-    }
-
-
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
-        transaction.commit();
+        setTitle("Editar Pet");
     }
 }

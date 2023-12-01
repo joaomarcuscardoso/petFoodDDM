@@ -40,20 +40,18 @@ public class PetRepository implements PetDao {
         }
     }
 
-    public boolean atualizarPet(Pet Pet){
+    public void updatePet(Pet Pet){
         try {
             db.petDao().updatePet(Pet);
-            return true;
         }
         catch (SQLiteConstraintException e){
-            return false;
+            System.out.println(e.getMessage());
         }
     }
 
     @Query("SELECT * FROM pet")
     public List<Pet> getAll() {
         List<Pet> pet = db.petDao().getAll();
-        System.out.println("PET: " + pet);
         return pet;
     }
 
@@ -69,11 +67,6 @@ public class PetRepository implements PetDao {
 
     @Override
     public void insertAll(Pet... Pets) {
-
-    }
-
-    @Override
-    public void updatePet(Pet Pet) {
 
     }
 
