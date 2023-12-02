@@ -11,6 +11,7 @@ import androidx.room.TypeConverters;
 import com.ddm.petfood.helper.DateConverter;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -37,14 +38,14 @@ public class Pet implements Serializable, Parcelable {
 
     protected Pet(Parcel in) {
         id = in.readInt();
-        image = in.readInt();
         nome = in.readString();
         raca = in.readString();
+        image = in.readInt();
         info = in.readString();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dataAniversario = formatter.parse(in.readString());
-        } catch (Exception e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -125,12 +126,12 @@ public class Pet implements Serializable, Parcelable {
     }
 
     @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(nome);
         parcel.writeString(raca);
-        parcel.writeString(info);
         parcel.writeInt(image);
-
+        parcel.writeString(info);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         parcel.writeString(formatter.format(dataAniversario));
     }

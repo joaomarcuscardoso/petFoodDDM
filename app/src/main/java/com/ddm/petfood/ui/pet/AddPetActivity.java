@@ -51,7 +51,6 @@ public class AddPetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = editTextName.getText().toString();
                 String race = editTextRace.getText().toString();
-                String info = editTextInfo.getText().toString();
 
                 if (name.isEmpty()) {
                     Toast.makeText(AddPetActivity.this, "Nome não pode ser vazio!", Toast.LENGTH_SHORT).show();
@@ -63,12 +62,15 @@ public class AddPetActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (info == null || info.isEmpty())
-                    info = "";
-
                 try {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = formatter.parse(editTextDate.getText().toString());
+                    String info = "";
+                    if (editTextInfo != null && !editTextInfo.getText().toString().isEmpty()) {
+                        System.out.println("INFO: " + editTextInfo.getText().toString());
+                        info = editTextInfo.getText().toString();
+                    }
+
                     homeViewModel.addPet(name, race, date, info);
                     // Use the 'date' variable as needed
                 } catch (ParseException e) {
