@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    tools:context=".ui.meal.MealCadastro">
+    tools:context=".ui.meal.EditMealActivity">
 
     <EditText
         android:id="@+id/edtNome"

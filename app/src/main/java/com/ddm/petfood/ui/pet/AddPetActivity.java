@@ -83,7 +83,7 @@ public class AddPetActivity extends AppCompatActivity {
             }
         });
 
-        setTitle("Add Meal");
+        setTitle("Add Pet");
     }
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

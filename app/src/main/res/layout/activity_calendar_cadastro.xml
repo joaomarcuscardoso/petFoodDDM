@@ -7,21 +7,31 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    tools:context=".ui.meal.MealCadastro">
+    tools:context=".ui.calendar.CalendarCadastro">
+
+    <Spinner
+        android:id="@+id/spinner_pet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_racao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        />
 
     <EditText
-        android:id="@+id/edtNome"
+        android:id="@+id/edDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:inputType="text" />
-    <EditText
-        android:id="@+id/edtRace"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:hint="Info"
-        android:inputType="textMultiLine" />
+        android:ems="10"
+        android:inputType="date" />
 
     <Button
         android:id="@+id/btnSalvar"
@@ -29,4 +39,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Save" />
+
 </LinearLayout>

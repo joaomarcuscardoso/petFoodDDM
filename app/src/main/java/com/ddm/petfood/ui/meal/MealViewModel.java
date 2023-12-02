@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.entity.Racao;
 import com.ddm.petfood.repository.RacaoRepository;
 
@@ -35,4 +36,12 @@ public class MealViewModel extends ViewModel
         racaoLiveData.setValue(racoes);
     }
 
+    public void removeRacao(Racao racao) {
+        racaoRepository.excluirRacao(racao);
+    }
+
+    public void atualiarRacao(Racao racao) {
+        System.out.println(racao.toString());
+        racaoRepository.atualizarRacao(racao);
+    }
 }

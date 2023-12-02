@@ -1,10 +1,16 @@
 package com.ddm.petfood.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Racao {
+public class Racao implements Serializable, Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -17,6 +23,24 @@ public class Racao {
         this.nome = nome;
         this.info = info;
     }
+
+    protected Racao(Parcel in) {
+        id = in.readInt();
+        nome = in.readString();
+        info = in.readString();
+    }
+
+    public static final Creator<Racao> CREATOR = new Creator<Racao>() {
+        @Override
+        public Racao createFromParcel(Parcel in) {
+            return new Racao(in);
+        }
+
+        @Override
+        public Racao[] newArray(int size) {
+            return new Racao[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -49,5 +73,17 @@ public class Racao {
                 ", nome='" + nome + '\'' +
                 ", info='" + info + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(nome);
+        parcel.writeString(info);
     }
 }
