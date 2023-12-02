@@ -37,17 +37,12 @@ public class MealFragment extends Fragment {
 
     private FragmentMealBinding binding;
 
-    private MealViewModel mealViewModel;
-
-    public MealFragment(){
-
-    }
+    public static MealViewModel mealViewModel;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.context = getContext();
 
         RacaoRepository racaoRepository = new RacaoRepository(context);
-
         mealViewModel = new ViewModelProvider(this, new MealViewModelFactory(racaoRepository)).get(MealViewModel.class);
 
         binding = FragmentMealBinding.inflate(inflater, container, false);
