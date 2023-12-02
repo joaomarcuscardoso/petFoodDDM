@@ -20,6 +20,7 @@ import com.ddm.petfood.repository.CalendarioRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarCadastro extends AppCompatActivity {
@@ -63,7 +64,7 @@ public class CalendarCadastro extends AppCompatActivity {
                     SimpleDateFormat format = new SimpleDateFormat("hh:mm");
                     Date date = format.parse(editTextHorario.getText().toString());
                     //falta terminar o metodo de addCalendario
-                    calendarViewModel.addCalendario();
+                    // calendarViewModel.addCalendario();
                 } catch (ParseException e){
                     Toast.makeText(CalendarCadastro.this, "Data Inválida!", Toast.LENGTH_SHORT).show();
                     return;
