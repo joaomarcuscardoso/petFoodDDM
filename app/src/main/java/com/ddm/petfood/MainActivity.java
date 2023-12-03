@@ -7,16 +7,30 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+<<<<<<< Updated upstream
 import android.view.Menu;
+=======
+import android.text.TextUtils;
+import android.util.Log;
+>>>>>>> Stashed changes
 
 import com.ddm.petfood.databinding.ActivityMainBinding;
+<<<<<<< Updated upstream
 import com.ddm.petfood.ui.CalendarFragment;
 import com.ddm.petfood.ui.HomeFragment;
 import com.ddm.petfood.ui.PetFragment;
 import com.ddm.petfood.ui.UserFragment;
+=======
+import com.ddm.petfood.ui.home.HomeFragment;
+import com.ddm.petfood.ui.meal.MealFragment;
+import com.ddm.petfood.ui.pet.PetFragment;
+import com.ddm.petfood.ui.user.UserFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
+>>>>>>> Stashed changes
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    String TAG = "TOKEN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
+
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+            if (!TextUtils.isEmpty(token)) {
+                Log.d(TAG, "retrieve token successful : " + token);
+            } else{
+                Log.w(TAG, "token should not be null...");
+            }
+        }).addOnFailureListener(e -> {
+            //handle e
+        }).addOnCanceledListener(() -> {
+            //handle cancel
+        }).addOnCompleteListener(task -> Log.v(TAG, "This is the token : " + task.getResult()));
     }
 
     private void replaceFragment(Fragment fragment) {

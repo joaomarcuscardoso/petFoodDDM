@@ -7,13 +7,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< Updated upstream
 import com.ddm.petfood.ui.HomeFragment;
+=======
+import com.ddm.petfood.entity.Usuario;
+>>>>>>> Stashed changes
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Usuario usuario;
     private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView edLogin = findViewById(R.id.edLogin);
-                TextView edSenha = findViewById(R.id.edSenha);
+                EditText edLogin = findViewById(R.id.edLogin);
+                EditText edSenha = findViewById(R.id.edSenha1);
 
                 String login = edLogin.getText().toString();
                 String senha = edSenha.getText().toString();

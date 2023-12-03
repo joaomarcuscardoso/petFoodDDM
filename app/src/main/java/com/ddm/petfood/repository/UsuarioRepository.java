@@ -20,7 +20,7 @@ public class UsuarioRepository {
         db = Room.databaseBuilder(context, AppDataBase.class, "AlarmPet.sqlite").allowMainThreadQueries().build();
     }
 
-    public void excluirPessoa(Usuario usuario){
+    public void excluirUsuario(Usuario usuario){
         try {
             db.usuarioDao().deleteUsuario(usuario);
         }
@@ -29,7 +29,7 @@ public class UsuarioRepository {
         }
     }
 
-    public boolean salvarPessoa(Usuario usuario){
+    public boolean salvarUsuario(Usuario usuario){
         try {
             db.usuarioDao().insertAll(usuario);
             return true;

@@ -86,4 +86,6 @@ public class Pet {
     public void setImage(int image) {
         this.image = image;
     }
+
+    //Injeção Dependencia da classe Usuario para lista de pets.
 }

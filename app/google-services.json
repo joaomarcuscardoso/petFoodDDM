@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966250860107",
+    "project_id": "petfood-4f670",
+    "storage_bucket": "petfood-4f670.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966250860107:android:b212f28309a4f851f9c7ce",
+        "android_client_info": {
+          "package_name": "com.ddm.petfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFwz7WxJjvRzV2cL83KoOei_B49Y4riaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
