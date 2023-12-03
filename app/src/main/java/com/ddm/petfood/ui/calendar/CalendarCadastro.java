@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,8 +21,10 @@ import com.ddm.petfood.repository.CalendarioRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class CalendarCadastro extends AppCompatActivity {
 
@@ -42,6 +45,17 @@ public class CalendarCadastro extends AppCompatActivity {
 
         spinnerPet = findViewById(R.id.spinner_pet);
         spinnerRacao = findViewById(R.id.spinner_racao);
+
+        ArrayAdapter<Pet> adapterPet = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                calendarViewModel.getOpcoesSpinnerPet(this));
+
+        spinnerPet.setAdapter(adapterPet);
+
+        ArrayAdapter<Racao> adapterRacao = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                calendarViewModel.getOpcoesSpinnerRacao(this));
+
+        spinnerRacao.setAdapter(adapterRacao);
+        
         editTextHorario = findViewById(R.id.edDate);
         Button btnSalvar = findViewById(R.id.btnSalvar);
 

@@ -13,6 +13,7 @@ import com.ddm.petfood.repository.CalendarioRepository;
 import com.ddm.petfood.repository.PetRepository;
 import com.ddm.petfood.repository.RacaoRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class CalendarViewModel extends ViewModel {
 
     private MutableLiveData<List<CalendarioWithPetAndRacao>> calendarioLiveData;
 
-    private MutableLiveData<List<Pet>> spinnerPet = new MutableLiveData<>();
+    private List<Pet> spinnerPet = new ArrayList<>();
 
-    private MutableLiveData<List<Racao>> spinnerRacao = new MutableLiveData<>();
+    private List<Racao> spinnerRacao = new ArrayList<>();
 
     private PetRepository petRepository;
 
@@ -34,26 +35,22 @@ public class CalendarViewModel extends ViewModel {
         this.calendarioRepository = calendarioRepository;
     }
 
-    public LiveData<List<Pet>> getOpcoesSpinnerPet(Context context){
+    public List<Pet> getOpcoesSpinnerPet(Context context){
         if(petRepository == null){
             petRepository = new PetRepository(context);
         }
 
-        List<Pet> opcoes = petRepository.getAll();
-
-        spinnerPet.setValue(opcoes);
+        spinnerPet = petRepository.getAll();
 
         return spinnerPet;
     }
 
-    public LiveData<List<Racao>> getOpcoesSpinnerRacao(Context context){
+    public List<Racao> getOpcoesSpinnerRacao(Context context){
         if(racaoRepository == null){
             racaoRepository = new RacaoRepository(context);
         }
 
-        List<Racao> opcoes = racaoRepository.getAllRacao();
-
-        spinnerRacao.setValue(opcoes);
+        spinnerRacao = racaoRepository.getAllRacao();
 
         return spinnerRacao;
     }

@@ -54,21 +54,6 @@ public class CalendarFragment extends Fragment {
         binding = FragmentCalendarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Spinner spPet = root.findViewById(R.id.spinner_pet);
-        Spinner spRacao = root.findViewById(R.id.spinner_racao);
-
-        calendarViewModel.getOpcoesSpinnerPet(context).observe(getViewLifecycleOwner(), opcoes -> {
-            ArrayAdapter<Pet> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, opcoes);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spPet.setAdapter(adapter);
-        });
-
-        calendarViewModel.getOpcoesSpinnerRacao(context).observe(getViewLifecycleOwner(), opcoes -> {
-            ArrayAdapter<Racao> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, opcoes);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spRacao.setAdapter(adapter);
-        });
-
         recyclerView = root.findViewById(R.id.recycler_calendar);
         calendarioAdapter = new CalendarioAdapter(context);
         recyclerView.setAdapter(calendarioAdapter);
