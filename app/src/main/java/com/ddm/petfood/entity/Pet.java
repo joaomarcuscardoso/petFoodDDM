@@ -104,12 +104,7 @@ public class Pet implements Serializable, Parcelable {
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "nome='" + nome + '\'' +
-                ", raca='" + raca + '\'' +
-                ", dataAniversario=" + dataAniversario +
-                ", info='" + info + '\'' +
-                '}';
+        return this.nome;
     }
 
     public int getImage() {

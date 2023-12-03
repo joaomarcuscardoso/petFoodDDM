@@ -68,11 +68,7 @@ public class Racao implements Serializable, Parcelable {
 
     @Override
     public String toString() {
-        return "Racao{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", info='" + info + '\'' +
-                '}';
+        return this.nome;
     }
 
     @Override
