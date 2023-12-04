@@ -29,7 +29,7 @@ public class UsuarioRepository {
         }
     }
 
-    public boolean salvarPessoa(Usuario usuario){
+    public boolean salvarUsuario(Usuario usuario){
         try {
             db.usuarioDao().insertAll(usuario);
             return true;
