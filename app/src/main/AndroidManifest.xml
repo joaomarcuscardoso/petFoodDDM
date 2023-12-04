@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetFood"
         tools:targetApi="31">
+        <service
+            android:name=".NotificacaoService"
+            tools:ignore="ExtraText"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
         <activity
             android:name=".ui.meal.EditMealActivity"
             android:exported="false" />
