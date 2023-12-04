@@ -58,10 +58,6 @@ public class EditMealActivity extends AppCompatActivity {
             Toast.makeText(this, "Ração atualizada com sucesso!", Toast.LENGTH_SHORT).show();
             FrameLayout frameLayout = findViewById(R.id.frame_layout);
 
-            ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-            setContentView(binding.getRoot());
-            binding.bottomNavigationView.getMenu().getItem(4).setChecked(true);
-
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.frame_layout, new MealFragment());
