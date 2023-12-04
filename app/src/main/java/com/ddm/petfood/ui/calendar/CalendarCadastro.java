@@ -75,10 +75,9 @@ public class CalendarCadastro extends AppCompatActivity {
                     return;
                 }
                 try {
-                    SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+                    SimpleDateFormat format = new SimpleDateFormat("hh.mm");
                     Date date = format.parse(editTextHorario.getText().toString());
-                    //falta terminar o metodo de addCalendario
-                    // calendarViewModel.addCalendario();
+                     calendarViewModel.addCalendario(pet.getId(), racao.getId(), date);
                 } catch (ParseException e){
                     Toast.makeText(CalendarCadastro.this, "Data Inválida!", Toast.LENGTH_SHORT).show();
                     return;

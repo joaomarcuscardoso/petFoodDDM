@@ -29,8 +29,7 @@ public class Calendario {
     @ColumnInfo(name = "racao_id")
     private long racaoId;
 
-    public Calendario(String titulo, Date time, long petId, long racaoId) {
-        this.titulo = titulo;
+    public Calendario(Date time, long petId, long racaoId) {
         this.time = time;
         this.petId = petId;
         this.racaoId = racaoId;

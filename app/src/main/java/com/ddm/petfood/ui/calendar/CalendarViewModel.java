@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ddm.petfood.entity.Calendario;
 import com.ddm.petfood.entity.CalendarioWithPetAndRacao;
 import com.ddm.petfood.entity.Pet;
 import com.ddm.petfood.entity.Racao;
@@ -68,8 +69,9 @@ public class CalendarViewModel extends ViewModel {
 
     }
 
-    public void addCalendario(Pet pet, Racao racao, Date date){
-
+    public void addCalendario(long petId, long racaoId, Date date){
+        Calendario newCalendario = new Calendario(date, petId, racaoId);
+        calendarioRepository.salvarCalendario(newCalendario);
     }
 
 }
