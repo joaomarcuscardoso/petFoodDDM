@@ -57,9 +57,7 @@ public class CalendarioAdapter extends RecyclerView.Adapter<CalendarioAdapter.Vi
         CalendarioWithPetAndRacao calendario = calendarios.get(position);
         holder.pet.setText(calendario.getPet().getNome());
         holder.racao.setText(calendario.getRacao().getNome());
-        holder.horario.setText((CharSequence) calendario.getCalendario().getTime());
-
-
+        holder.horario.setText(calendario.getCalendario().getTime().toString());
     }
 
     @Override
