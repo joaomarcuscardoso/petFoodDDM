@@ -38,60 +38,16 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
         inicializar();
-        btnCadastrar = findViewById(R.id.btnCadastrar);
-        btnCadastrar.setOnClickListener(v -> {
-            validarCampos(v);
-            Toast.makeText(context, "salvo com sucesso", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(v.getContext(), MainActivity.class);
-            intent.putExtra("usuario", "nomeUsuario");
-            startActivity(intent);
-        });
     }
 
-//    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
-//        View view = inflater.inflate(R.layout.activity_cadastro, container, false);
-//
-//        edNome = view.findViewById(R.id.edNome);
-//        edEmail = view.findViewById(R.id.edEmail);
-//        edSenha = view.findViewById(R.id.edSenha);
-//
-//        Button btnCadastrar = view.findViewById(R.id.btnCadastrar);
-//        btnCadastrar.setOnClickListener(v ->{
-//            String nome = edNome.getText().toString();
-//            String email = edEmail.getText().toString();
-//            String senha = edSenha.getText().toString();
-//            usuario = criarUsuario(nome, email, senha);
-//            salvarUsuario(usuario);
-//            validarCampos(v);
-//            Toast.makeText(context, "salvo com sucesso", Toast.LENGTH_SHORT).show();
-//        });
-//        return view;
-//    }
 
-//    private Usuario getUsuario(int id){
-//        UsuarioRepository usuarioRepository = new UsuarioRepository(this);
-//        return usuarioRepository.getUsuario(id);
-//    }
-//
-//    public void salvarUsuario(Usuario usuario){
-//        UsuarioRepository usuarioRepository = new UsuarioRepository(this);
-//        if (usuarioRepository.salvarUsuario(usuario)){
-//            Toast.makeText(this, usuario.toString(), Toast.LENGTH_SHORT).show();
-//        }else {
-//            Toast.makeText(this, "Error ao salvar usuario", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    public Usuario criarUsuario(String nome, String email, String senha){
-//        return new Usuario();
-//    }
 
     private void inicializar(){
         edNome = findViewById(R.id.edNome);
         edEmail = findViewById(R.id.edEmail);
         edSenha = findViewById(R.id.edSenha);
 
-        //btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnCadastrar = findViewById(R.id.btnCadastrar);
     }
 
     public void validarCampos(View v){
@@ -102,6 +58,8 @@ public class CadastroActivity extends AppCompatActivity {
         if(!nome.isEmpty()){
             if (!email.isEmpty()){
                 if (!senha.isEmpty()){
+                    usuario = new Usuario();
+
                     usuario.setNome(nome);
                     usuario.setEmail(email);
                     usuario.setSenha(senha);
@@ -145,4 +103,50 @@ public class CadastroActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+
+
+
+
+
+
+    //public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
+//        View view = inflater.inflate(R.layout.activity_cadastro, container, false);
+//
+//        edNome = view.findViewById(R.id.edNome);
+//        edEmail = view.findViewById(R.id.edEmail);
+//        edSenha = view.findViewById(R.id.edSenha);
+//
+//        Button btnCadastrar = view.findViewById(R.id.btnCadastrar);
+//        btnCadastrar.setOnClickListener(v ->{
+//            String nome = edNome.getText().toString();
+//            String email = edEmail.getText().toString();
+//            String senha = edSenha.getText().toString();
+//            usuario = criarUsuario(nome, email, senha);
+//            salvarUsuario(usuario);
+//            validarCampos(v);
+//            Toast.makeText(context, "salvo com sucesso", Toast.LENGTH_SHORT).show();
+//        });
+//        return view;
+//    }
+
+//    private Usuario getUsuario(int id){
+//        UsuarioRepository usuarioRepository = new UsuarioRepository(this);
+//        return usuarioRepository.getUsuario(id);
+//    }
+//
+//    public void salvarUsuario(Usuario usuario){
+//        UsuarioRepository usuarioRepository = new UsuarioRepository(this);
+//        if (usuarioRepository.salvarUsuario(usuario)){
+//            Toast.makeText(this, usuario.toString(), Toast.LENGTH_SHORT).show();
+//        }else {
+//            Toast.makeText(this, "Error ao salvar usuario", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    public Usuario criarUsuario(String nome, String email, String senha){
+//        return new Usuario();
+//    }
 }
