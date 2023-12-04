@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ddm.petfood.R;
 import com.ddm.petfood.entity.CalendarioWithPetAndRacao;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class CalendarioAdapter extends RecyclerView.Adapter<CalendarioAdapter.ViewHolder> {
 
@@ -54,10 +56,11 @@ public class CalendarioAdapter extends RecyclerView.Adapter<CalendarioAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull CalendarioAdapter.ViewHolder holder, int position) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
         CalendarioWithPetAndRacao calendario = calendarios.get(position);
         holder.pet.setText(calendario.getPet().getNome());
         holder.racao.setText(calendario.getRacao().getNome());
-        holder.horario.setText(calendario.getCalendario().getTime().toString());
+        holder.horario.setText(dateFormat.format(calendario.getCalendario().getTime()).toString());
     }
 
     @Override
