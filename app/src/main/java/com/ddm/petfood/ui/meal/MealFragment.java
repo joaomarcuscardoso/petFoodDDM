@@ -57,9 +57,7 @@ public class MealFragment extends Fragment {
         mealViewModel.getAllRacoes().observe(getViewLifecycleOwner(), new Observer<List<Racao>>() {
             @Override
             public void onChanged(List<Racao> racaos) {
-
                 mealAdapter.setMeals(racaos);
-
             }
         });
 
